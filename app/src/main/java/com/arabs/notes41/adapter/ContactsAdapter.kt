@@ -28,8 +28,8 @@ class ContactsAdapter ( private val context: Context, private val mContacts: Lis
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
 
-        var nameTextView: TextView = itemView.findViewById<View>(R.id.contact_name) as TextView
-        var messageButton: Button = itemView.findViewById<View>(R.id.message_button) as Button
+        var titleTextView: TextView = itemView.findViewById<View>(R.id.title) as TextView
+        var dateTextView: TextView = itemView.findViewById<View>(R.id.date) as TextView
 
         // Stores the itemView in a public final member variable that can be used
         // to access the context from any ViewHolder instance.
@@ -54,9 +54,9 @@ class ContactsAdapter ( private val context: Context, private val mContacts: Lis
         val contact = mContacts[position]
 
         // Set item views based on your views and data model
-        val textView = viewHolder.nameTextView
+        val textView = viewHolder.titleTextView
         textView.text = contact.name
-        val button = viewHolder.messageButton
+        val button = viewHolder.dateTextView
         button.text = "Message"
     }
 
