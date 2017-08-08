@@ -1,4 +1,4 @@
-package com.arabs.notes41
+package com.arabs.notes41.activities
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import com.arabs.notes41.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 import com.arabs.notes41.adapter.ContactsAdapter
@@ -14,6 +15,8 @@ import com.arabs.notes41.support.ItemClickSupport
 import kotlinx.android.synthetic.main.content_main.*
 
 import java.util.ArrayList
+import android.content.Intent
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +29,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            //    .setAction("Action", null).show()
+
+            val intent = Intent(this, WriteNote::class.java)
+            // intent.putExtra("key", value)
+            startActivity(intent)
         }
 
         ItemClickSupport.addTo(rvContacts).setOnItemClickListener { recyclerView, position, v ->
@@ -64,6 +71,12 @@ class MainActivity : AppCompatActivity() {
             return true
         }
 
+        if (id == R.id.action_toTask) {
+            val intent = Intent(this, TaskActivity::class.java)
+            // intent.putExtra("key", value)
+            startActivity(intent)
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 }
