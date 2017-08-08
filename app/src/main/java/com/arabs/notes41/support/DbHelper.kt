@@ -2,17 +2,15 @@ package com.arabs.notes41.support
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 import java.util.ArrayList
 
-/**
- * Created by Rashid on 08/08/2017.
- */
 
 class DbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VER) {
+
+
 
     override fun onCreate(db: SQLiteDatabase) {
         val query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL);", DB_TABLE, DB_COLUMN)
@@ -27,6 +25,7 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
 
     }
 
+    //add to database
     fun insertNewTask(task: String) {
         val db = this.writableDatabase
         val values = ContentValues()
@@ -35,6 +34,7 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         db.close()
     }
 
+    //delete from database
     fun deleteTask(task: String) {
         val db = this.writableDatabase
         db.delete(DB_TABLE, DB_COLUMN + " = ?", arrayOf(task))
@@ -53,11 +53,11 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
             cursor.close()
             db.close()
             return taskList
-        }
+    }
 
     companion object {
 
-        private val DB_NAME = "EDMTDev"
+        private val DB_NAME = "NoteDatabase"
         private val DB_VER = 1
         val DB_TABLE = "Task"
         val DB_COLUMN = "TaskName"
